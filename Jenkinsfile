@@ -13,23 +13,16 @@ pipeline {
     checkout scm
    }
   }
-  stage('acess folder') {
-        steps {
-              sh """
-                cd kanban-app/kanban-app
-                pwd 
-              """
-          }
-          }
   stage('Compile & package') {
         steps {
-              
+              sh "cd kanban-app/kanban-app"
               sh "${mvnCMD} clean package"
           }
           }
    stage('Unit Tests') {
     steps {
-    sh '${mvnCMD} test'
+     sh "cd kanban-app/kanban-app"
+     sh '${mvnCMD} test'
    }
    post {
     always {
