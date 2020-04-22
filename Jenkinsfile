@@ -5,8 +5,7 @@ pipeline {
      mvnCMD = "${mvnHome}/bin/mvn"
      }
  options {
-  //skipDefaultCheckout()
-  checkoutToSubdirectory('kanban-app') 
+ skipDefaultCheckout()
  }
  stages {
   stage('SCM') {
@@ -14,9 +13,17 @@ pipeline {
     checkout scm
    }
   }
+  stage('acess folder') {
+        steps {
+              sh """
+                cd MyFolder
+                pwd 
+              """
+          }
+          }
   stage('Compile & package') {
         steps {
-          
+              
               sh "${mvnCMD} clean package"
           }
           }
