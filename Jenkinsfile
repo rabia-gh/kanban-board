@@ -15,6 +15,7 @@ pipeline {
   }
   stage('Compile & package') {
         steps {
+              sh "cd kanban-app/"
               sh "${mvnCMD} clean package"
           }
           }
