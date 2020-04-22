@@ -16,7 +16,7 @@ pipeline {
   stage('acess folder') {
         steps {
               sh """
-                cd MyFolder
+                cd kanban-app
                 pwd 
               """
           }
