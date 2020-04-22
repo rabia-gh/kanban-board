@@ -16,13 +16,13 @@ pipeline {
   }
   stage('Compile & package') {
         steps {
-              sh 'cd kanban-app/kanban-app'
+             // sh 'cd kanban-app/kanban-app'
               sh '${mvnCMD} clean package'
           }
           }
    stage('Unit Tests') {
     steps {
-     sh "cd kanban-app/kanban-app"
+     //sh "cd kanban-app/kanban-app"
      sh '${mvnCMD} test'
    }
    post {
