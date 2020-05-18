@@ -5,6 +5,8 @@ environment {
      mvnCMD = "${mvnHome}/bin/mvn"
      }
    stages {
+    stage('Dev Backend ') {
+   parallel {
         stage('Compile & package') {
             steps {
              dir('kanban-app'){
@@ -17,6 +19,8 @@ environment {
      dir('kanban-app'){
                     sh '${mvnCMD} test'
    }
+                    }
+                    }
                     }
                     }
                     }
