@@ -5,7 +5,9 @@ environment {
      mvnCMD = "${mvnHome}/bin/mvn"
      }
    stages {
-    stage('Dev Backend ') {
+    stage('Dev stage ') {
+   parallel {
+    stage('Compile & package') {
             steps {
              dir('kanban-app'){
                     sh '${mvnCMD} clean package'
@@ -39,6 +41,8 @@ environment {
         sh 'docker build -t 192.168.1.69:8083/demo:1.0.0 .'
    }
    }
+                    }
+                    }
                     }
                     }
                     }
