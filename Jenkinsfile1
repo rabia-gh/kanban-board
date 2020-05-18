@@ -8,7 +8,7 @@ environment {
         stage('Install Dependencies') {
             steps {
              
-                dir('frontend') {
+                dir('kanban-app') {
                     sh '${mvnCMD} clean package'
                     }
                     }
