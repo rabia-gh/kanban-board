@@ -5,14 +5,16 @@ environment {
      mvnCMD = "${mvnHome}/bin/mvn"
      }
    stages {
-     dir('kanban-app'){
-        stage('Install Dependencies') {
+        stage('Compile & package') {
             steps {
+             dir('kanban-app'){
                     sh '${mvnCMD} clean package'
+                    }
                     }
                     }
        stage('Unit Tests') {
     steps {
+     dir('kanban-app'){
                     sh '${mvnCMD} test'
    }
                     }
