@@ -4,6 +4,7 @@ environment {
      mvnHome = tool name: 'maven', type: 'maven'
      mvnCMD = "${mvnHome}/bin/mvn"
      }
+     stages{
     stage('Dev stage ') {
    stages{
     stage('Compile & package') {
@@ -44,6 +45,7 @@ environment {
                     }
                     }
                     
+                    }
                     }
                     
                     
