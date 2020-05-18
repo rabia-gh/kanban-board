@@ -6,8 +6,6 @@ environment {
      }
    stages {
     stage('Dev Backend ') {
-   parallel {
-        stage('Compile & package') {
             steps {
              dir('kanban-app'){
                     sh '${mvnCMD} clean package'
@@ -44,6 +42,6 @@ environment {
                     }
                     }
                     }
-                    }
-                    }
+                    
+                    
  
