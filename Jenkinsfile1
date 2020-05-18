@@ -20,13 +20,11 @@ environment {
                     sh '${mvnCMD} test'
                     }
                     }
-     dir('kanban-app'){
      post {
     always {
      junit 'target/surefire-reports/**/*.xml'
     }
    }
-                    }
                     }
   stage('Code Quality inspection'){
     steps { 
