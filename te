@@ -1,0 +1,20 @@
+pipeline {
+ agent any
+ stages {
+  stage('SCM') {
+   steps {
+    checkout scm
+   }
+  }
+stage 'Check preconditions'
+   sequential "Sanity check 1": {
+        echo "1"
+    }, "Sanity check 2": {
+        echo "2"
+    }, "Sanity check 3": {
+        echo "3"
+    }, "Sanity check 4": {
+        echo "4"
+    }
+    }
+    }
