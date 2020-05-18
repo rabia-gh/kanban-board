@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+environment {
+     mvnHome = tool name: 'maven', type: 'maven'
+     mvnCMD = "${mvnHome}/bin/mvn"
+     }
+   stages {
+        stage('Install Dependencies') {
+            steps {
+             
+                dir('frontend') {
+                    sh '${mvnCMD} clean package'
+                    }
+                    }
+                    }
+                    }
+                    }
+ 
