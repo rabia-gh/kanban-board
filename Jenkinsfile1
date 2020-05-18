@@ -6,7 +6,7 @@ environment {
      }
    stages {
     stage('Dev stage ') {
-   parallel {
+   sequential {
     stage('Compile & package') {
             steps {
              dir('kanban-app'){
