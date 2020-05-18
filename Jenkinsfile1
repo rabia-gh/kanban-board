@@ -4,9 +4,8 @@ environment {
      mvnHome = tool name: 'maven', type: 'maven'
      mvnCMD = "${mvnHome}/bin/mvn"
      }
-   stages {
     stage('Dev stage ') {
-   sequential {
+   stages{
     stage('Compile & package') {
             steps {
              dir('kanban-app'){
@@ -44,7 +43,7 @@ environment {
                     }
                     }
                     }
-                    }
+                    
                     }
                     
                     
