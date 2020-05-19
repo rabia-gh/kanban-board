@@ -4,10 +4,15 @@ environment {
      mvnHome = tool name: 'maven', type: 'maven'
      mvnCMD = "${mvnHome}/bin/mvn"
      }
- stages{
+ stages {
+  stage('SCM') {
+   steps {
+    checkout scm
+   }
+  }
    stage('Dev stage ') {
    parallel {
-    stage('Dev Backend ') {
+     stage('Dev Backend ') {
    stages{
                  stage('Compile & package') {
                     steps {
