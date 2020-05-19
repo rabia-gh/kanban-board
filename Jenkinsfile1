@@ -5,15 +5,15 @@ environment {
      mvnCMD = "${mvnHome}/bin/mvn"
      }
  stages {
-  stage('SCM') {
+    stage('SCM') {
    steps {
     checkout scm
    }
   }
    stage('Dev stage ') {
-   parallel {
-     stage('Backend ') {
-   stages{
+        parallel {
+            stage('Backend ') {
+                stages{
                  stage('Compile & package') {
                     steps {
                         dir('kanban-app'){
@@ -71,7 +71,7 @@ environment {
           }
      stage ('build') {
       steps{
-        sh 'ng build'
+       dir('kanban-ui'){ sh 'ng build'}
       }
     }
     stage('Build Docker Image'){
@@ -112,6 +112,6 @@ environment {
    }
                     }
                     }
-                    }
+                    
                     
  
