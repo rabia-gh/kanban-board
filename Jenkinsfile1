@@ -12,7 +12,7 @@ environment {
   }
    stage('Dev stage ') {
    parallel {
-     stage('Dev Backend ') {
+     stage('Backend ') {
    stages{
                  stage('Compile & package') {
                     steps {
@@ -51,7 +51,7 @@ environment {
                     }
                     }
                     }
-        stage('Dev Frontend ')  {
+        stage('Frontend ')  {
    stages{
             stage('SCM') {
        steps {
@@ -69,12 +69,47 @@ environment {
           }
           }
           }
+     stage ('build') {
+      steps{
+        sh 'ng build'
+      }
+    }
+    stage('Build Docker Image'){
+    steps { 
+    dir('kanban-ui'){
+    sh 'docker build -t 192.168.1.69:8083/frontend:1.0.0 .'}
+   }
+   }
+   stage('Push Docker Image'){
+    steps { 
+     sh "docker login -u admin -p admin 192.168.1.69:8083" 
+     sh 'docker push 192.168.1.69:8083/frontend:1.0.0'
+     }
           }
           
                     }
                     }
  
                     }
+    stage('Test stage') {
+   parallel {
+   stage('Deploy app ') {
+     steps {
+      sh 'docker-compose -f app.yml up' 
+     }
+     }
+    stage('Test Backend ') {
+     steps {
+      build job: 'testKatalon' 
+     }
+     }
+    stage('Test Frontend '){
+          steps {
+    sh 'pwd'
+     }
+     }
+ }
+   }
                     }
                     }
                     
