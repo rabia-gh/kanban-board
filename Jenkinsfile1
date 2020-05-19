@@ -100,7 +100,7 @@ environment {
                     }
     stage('Deploy app ') {
      steps {
-      sh 'docker-compose -f app.yml up' 
+      sh ' docker-compose.yml up' 
      }
      }
     stage('Test stage') {
