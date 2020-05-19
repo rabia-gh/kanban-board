@@ -73,6 +73,25 @@ environment {
           
                     }
                     }
+    stage('Test stage') {
+   parallel {
+   stage('Deploy app ') {
+     steps {
+      sh 'docker-compose -f app.yml up' 
+     }
+     }
+    stage('Test Backend ') {
+     steps {
+      build job: 'testKatalon' 
+     }
+     }
+    stage('Test Frontend '){
+          steps {
+    sh 'pwd'
+     }
+     }
+ }
+   }
                     }
                     }
                     
