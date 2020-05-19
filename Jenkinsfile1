@@ -92,13 +92,13 @@ environment {
  
                     }
                     }
-    stage('Test stage') {
-   parallel {
-   stage('Deploy app ') {
+    stage('Deploy app ') {
      steps {
       sh 'docker-compose -f app.yml up' 
      }
      }
+    stage('Test stage') {
+   parallel {
     stage('Test Backend ') {
      steps {
       build job: 'testKatalon' 
