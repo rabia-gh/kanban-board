@@ -49,6 +49,12 @@ environment {
                       }
                               }
                     }
+                 stage('Push Docker Image'){
+    steps { 
+     sh "docker login -u admin -p admin 192.168.1.69:8083" 
+     sh 'docker push 192.168.1.69:8083/demo:1.0.0'
+     }
+   } 
                     }
                     }
         stage('Frontend ')  {
