@@ -1,20 +1,41 @@
 pipeline {
- agent any
- stages {
-  stage('SCM') {
-   steps {
-    checkout scm
-   }
+  agent { label 'master' }
+  stages {
+    stage('Build and Test') {
+      parallel {
+        stage("Build and Test Linux") {
+          stages {
+            stage("Build (Linux)") {
+              agent any
+              steps {
+                echo "Inside for loop 1"
+              }
+            }
+            stage("Test (Linux)") {
+              agent any
+              steps {
+                echo "Inside for loop 2"
+              }
+            }
+          }
+        }
+        stage("Build and Test Windows") {
+          stages {
+            stage("Build (Windows)") {
+              agent any
+              steps {
+                echo "Inside for loop 3"
+              }
+            }
+            stage("Test (Windows)") {
+              agent any
+              steps {
+                echo "Inside for loop 4"
+              }
+            }
+          }
+        }
+      }
+    }
   }
-stage 'Check preconditions'
-   sequential "Sanity check 1": {
-        echo "1"
-    }, "Sanity check 2": {
-        echo "2"
-    }, "Sanity check 3": {
-        echo "3"
-    }, "Sanity check 4": {
-        echo "4"
-    }
-    }
-    }
+}
